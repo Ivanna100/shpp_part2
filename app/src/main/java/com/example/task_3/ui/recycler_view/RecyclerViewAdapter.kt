@@ -2,25 +2,29 @@ package com.example.task_3.ui.recycler_view
 
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.task_3.utils.ext.loadImage
 import com.example.task_3.databinding.ItemUserBinding
 import com.example.task_3.domain.model.User
+import com.example.task_3.utils.Constants
 
 
-class RecyclerViewAdapter :
+class RecyclerViewAdapter(
+    val listener: UserItemClickListener
+) :
     RecyclerView.Adapter<RecyclerViewAdapter.UsersViewHolder>() {
 
-    private var listener: UserItemClickListener? = null
+//    private var listener: UserItemClickListener? = null
 
     class UsersViewHolder(val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root)
 
     private val users = ArrayList<User>()
 
-    fun setUserItemClickListener(listener: UserItemClickListener) {
-        this.listener = listener
-    }
+//    fun setUserItemClickListener(listener: UserItemClickListener) {
+//        this.listener = listener
+//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -30,13 +34,23 @@ class RecyclerViewAdapter :
 
     override fun onBindViewHolder(holder: UsersViewHolder, position: Int) {
         val user = users[position]
-
-        holder.binding.imageViewDelete.setOnClickListener {
-            val positionUser = holder.adapterPosition
-            listener?.onUserDelete(user, positionUser)
-        }
-
         with(holder.binding) {
+        imageViewDelete.setOnClickListener {
+            val positionUser = holder.adapterPosition
+            listener.onUserDeleteClick(user, positionUser)
+        }
+            val arrayOfElements = arrayOf(
+                setTransitionName(imageViewUserPhoto, Constants.TRANSITION_NAME_IMAGE + user.id),
+                setTransitionName(textViewName, Constants.TRANSITION_NAME_NAME + user.id),
+                setTransitionName(textViewCareer, Constants.TRANSITION_NAME_CAREER + user.id)
+            )
+            root.setOnClickListener {
+                listener.onUserClick(user, arrayOfElements)
+//                imageViewAvatar.transitionName =
+//                    Constants.TRANSITION_NAME_IMAGE + contact.id
+//                textViewFullName.transitionName = Constants.TRANSITION_NAME_NAME + contact.id
+//                textViewCareer.transitionName = Constants.TRANSITION_NAME_CAREER + contact.id
+            }
             textViewName.text = user.name
             textViewCareer.text = user.career
             imageViewUserPhoto.loadImage(user.photo)
@@ -44,6 +58,11 @@ class RecyclerViewAdapter :
         }
     }
 
+    private fun setTransitionName(view: View, name: String) : Pair<View, String> {
+        view.transitionName = name
+        return view to name
+
+    }
     override fun getItemCount(): Int = users.size
 
     fun updateUsers(newUsers: ArrayList<User>) {

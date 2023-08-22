@@ -1,6 +1,7 @@
 package com.example.task_3.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,11 +21,25 @@ import com.example.task_3.ui.recycler_view.UserViewModel
 import com.example.task_3.utils.Constants
 import com.google.android.material.snackbar.Snackbar
 
-class StartFragment : Fragment(), UserItemClickListener {
+class StartFragment : Fragment() {
 
     private lateinit var binding: FragmentStartBinding
     private val adapter: RecyclerViewAdapter by lazy {
-        RecyclerViewAdapter()
+        RecyclerViewAdapter(object : UserItemClickListener {
+            override fun onUserDeleteClick(contact: User, position: Int) {
+                deleteUserWithRestore(contact, position)
+            }
+
+            override fun onUserClick(
+                contact: User,
+                transitionPairs: Array<Pair<View, String>>
+            ) {
+                val direction = StartFragmentDirections.actionStartFragmentToProfileFragment(contact)
+                val extras = FragmentNavigatorExtras(*transitionPairs)
+                findNavController().navigate(direction, extras)
+            }
+
+        })
     }
 
     private var userViewModel = UserViewModel()
@@ -48,7 +63,7 @@ class StartFragment : Fragment(), UserItemClickListener {
         setTouchRecycleItemListener()
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         val layoutManager = LinearLayoutManager(context)
-        adapter.setUserItemClickListener(this)
+//        adapter.setUserItemClickListener(this)
         binding.recyclerViewContacts.layoutManager = layoutManager
         binding.recyclerViewContacts.adapter = adapter
         adapter.updateUsers(userViewModel.getUsersList())
@@ -85,16 +100,17 @@ class StartFragment : Fragment(), UserItemClickListener {
 
     private fun showAddContactsDialog() {
         binding.textViewAddContacts.setOnClickListener {
-            val dialogFragment = DialogFragment()
+            Log.d("Aaaa", "add contact click")
+            val dialogFragment = MyDialogFragment()
             dialogFragment.setViewModel(userViewModel)
             dialogFragment.setAdapter(adapter)
             dialogFragment.show(parentFragmentManager, Constants.DIALOG_TAG)
         }
     }
 
-    override fun onUserDelete(contact: User, position: Int) {
-        deleteUserWithRestore(contact, position)
-    }
+//    override fun onUserDelete(contact: User, position: Int) {
+//        deleteUserWithRestore(contact, position)
+//    }
 
     fun deleteUserWithRestore(contact: User, position: Int) {
         if (userViewModel.deleteUser(contact)) {
@@ -114,10 +130,10 @@ class StartFragment : Fragment(), UserItemClickListener {
         }
     }
 
-    override fun onOpenNewFragment(contact: User, transitionPairs: Array<Pair<View, String>>) {
-        val direction = StartFragmentDirections.actionStartFragmentToProfileFragment(contact)
-        val extras = FragmentNavigatorExtras(*transitionPairs)
-        findNavController().navigate(direction, extras)
-    }
+//    override fun onOpenNewFragment(contact: User, transitionPairs: Array<Pair<View, String>>) {
+//        val direction = StartFragmentDirections.actionStartFragmentToProfileFragment(contact)
+//        val extras = FragmentNavigatorExtras(*transitionPairs)
+//        findNavController().navigate(direction, extras)
+//    }
 
 }

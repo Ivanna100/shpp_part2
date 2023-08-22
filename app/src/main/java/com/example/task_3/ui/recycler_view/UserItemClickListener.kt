@@ -4,6 +4,6 @@ import android.view.View
 import com.example.task_3.domain.model.User
 
 interface UserItemClickListener {
-    fun onUserDelete(contact: User, position: Int)
-    fun onOpenNewFragment(contact: User, transitionPairs: Array<Pair<View, String>>)
+    fun onUserDeleteClick(contact: User, position: Int)
+    fun onUserClick(contact: User, transitionPairs: Array<Pair<View, String>>)
 }
