@@ -32,6 +32,7 @@ class DetailFragment : Fragment() {
         setNavigationBack()
         return binding.root
     }
+
     private fun setProfile(contact: User) {
         with(binding) {
             imageViewAvatar.loadImage(contact.photo)
@@ -39,6 +40,7 @@ class DetailFragment : Fragment() {
             textViewCareer.text = contact.career
         }
     }
+
     private fun setSharedElementsTransition(contact: User) {
         with(binding) {
             imageViewAvatar.transitionName =
@@ -52,11 +54,6 @@ class DetailFragment : Fragment() {
         sharedElementEnterTransition = animation
         sharedElementReturnTransition = animation
     }
-
-
-//    private fun setListeners() {
-//        setNavigationBack()
-//    }
 
     private fun setNavigationBack() {
         binding.imageViewNavigationBack.setOnClickListener {

@@ -1,6 +1,5 @@
 package com.example.task_3.ui.recycler_view
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,19 +11,13 @@ import com.example.task_3.utils.Constants
 
 
 class RecyclerViewAdapter(
-    val listener: UserItemClickListener
+    private val listener: UserItemClickListener
 ) :
     RecyclerView.Adapter<RecyclerViewAdapter.UsersViewHolder>() {
-
-//    private var listener: UserItemClickListener? = null
 
     class UsersViewHolder(val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root)
 
     private val users = ArrayList<User>()
-
-//    fun setUserItemClickListener(listener: UserItemClickListener) {
-//        this.listener = listener
-//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -46,23 +39,18 @@ class RecyclerViewAdapter(
             )
             root.setOnClickListener {
                 listener.onUserClick(user, arrayOfElements)
-//                imageViewAvatar.transitionName =
-//                    Constants.TRANSITION_NAME_IMAGE + contact.id
-//                textViewFullName.transitionName = Constants.TRANSITION_NAME_NAME + contact.id
-//                textViewCareer.transitionName = Constants.TRANSITION_NAME_CAREER + contact.id
             }
             textViewName.text = user.name
             textViewCareer.text = user.career
             imageViewUserPhoto.loadImage(user.photo)
-            Log.d("my_log", user.photo)
         }
     }
 
     private fun setTransitionName(view: View, name: String) : Pair<View, String> {
         view.transitionName = name
         return view to name
-
     }
+
     override fun getItemCount(): Int = users.size
 
     fun updateUsers(newUsers: ArrayList<User>) {

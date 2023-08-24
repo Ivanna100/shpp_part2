@@ -63,7 +63,6 @@ class StartFragment : Fragment() {
         setTouchRecycleItemListener()
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         val layoutManager = LinearLayoutManager(context)
-//        adapter.setUserItemClickListener(this)
         binding.recyclerViewContacts.layoutManager = layoutManager
         binding.recyclerViewContacts.adapter = adapter
         adapter.updateUsers(userViewModel.getUsersList())
@@ -74,13 +73,12 @@ class StartFragment : Fragment() {
         ItemTouchHelper(itemTouchCallback).attachToRecyclerView(binding.recyclerViewContacts)
     }
 
-
     private fun setClickListener() {
         showAddContactsDialog()
     }
 
     private fun setTouchCallBackListener(): ItemTouchHelper.Callback {
-        return object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+        return object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
             override fun onMove(
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder,
@@ -108,10 +106,6 @@ class StartFragment : Fragment() {
         }
     }
 
-//    override fun onUserDelete(contact: User, position: Int) {
-//        deleteUserWithRestore(contact, position)
-//    }
-
     fun deleteUserWithRestore(contact: User, position: Int) {
         if (userViewModel.deleteUser(contact)) {
             adapter.notifyItemRemoved(position)
@@ -129,11 +123,4 @@ class StartFragment : Fragment() {
                 }.show()
         }
     }
-
-//    override fun onOpenNewFragment(contact: User, transitionPairs: Array<Pair<View, String>>) {
-//        val direction = StartFragmentDirections.actionStartFragmentToProfileFragment(contact)
-//        val extras = FragmentNavigatorExtras(*transitionPairs)
-//        findNavController().navigate(direction, extras)
-//    }
-
 }
