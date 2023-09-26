@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.task_3.R
 import com.example.task_3.databinding.FragmentStartBinding
 import com.example.task_3.domain.model.User
-import com.example.task_3.ui.recycler_view.RecyclerViewAdapter
+import com.example.task_3.ui.recycler_view.UserListAdapter
 import com.example.task_3.ui.recycler_view.UserItemClickListener
 import com.example.task_3.ui.recycler_view.UserViewModel
 import com.example.task_3.utils.Constants
@@ -24,8 +24,8 @@ import com.google.android.material.snackbar.Snackbar
 class StartFragment : Fragment() {
 
     private lateinit var binding: FragmentStartBinding
-    private val adapter: RecyclerViewAdapter by lazy {
-        RecyclerViewAdapter(object : UserItemClickListener {
+    private val adapter: UserListAdapter by lazy {
+        UserListAdapter(object : UserItemClickListener {
             override fun onUserDeleteClick(contact: User, position: Int) {
                 deleteUserWithRestore(contact, position)
             }

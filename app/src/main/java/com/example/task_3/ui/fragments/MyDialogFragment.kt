@@ -7,7 +7,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDialogFragment
 import com.example.task_3.databinding.FragmentAddUserBinding
 import com.example.task_3.domain.model.User
-import com.example.task_3.ui.recycler_view.RecyclerViewAdapter
+import com.example.task_3.ui.recycler_view.UserListAdapter
 import com.example.task_3.ui.recycler_view.UserViewModel
 
 class MyDialogFragment: AppCompatDialogFragment() {
@@ -18,9 +18,9 @@ class MyDialogFragment: AppCompatDialogFragment() {
     }
 
     private lateinit var binding: FragmentAddUserBinding
-    private lateinit var adapter: RecyclerViewAdapter
+    private lateinit var adapter: UserListAdapter
 
-    fun setAdapter(recyclerViewAdapter: RecyclerViewAdapter) {
+    fun setAdapter(recyclerViewAdapter: UserListAdapter) {
         adapter = recyclerViewAdapter
     }
 
