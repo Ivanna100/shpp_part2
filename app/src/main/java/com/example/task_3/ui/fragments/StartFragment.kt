@@ -6,7 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -20,6 +24,7 @@ import com.example.task_3.ui.recycler_view.UserItemClickListener
 import com.example.task_3.ui.recycler_view.UserViewModel
 import com.example.task_3.utils.Constants
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.launch
 
 class StartFragment : Fragment() {
 
@@ -42,7 +47,7 @@ class StartFragment : Fragment() {
         })
     }
 
-    private var userViewModel = UserViewModel()
+    private val viewModel : UserViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,17 +60,26 @@ class StartFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setObserver()
         initialRecyclerview()
         setClickListener()
     }
 
+    private fun setObserver() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.users.collect {
+                    adapter.submitList(it)
+                }
+            }
+        }
+    }
+
     private fun initialRecyclerview() {
         setTouchRecycleItemListener()
-        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         val layoutManager = LinearLayoutManager(context)
         binding.recyclerViewContacts.layoutManager = layoutManager
         binding.recyclerViewContacts.adapter = adapter
-        adapter.updateUsers(userViewModel.getUsersList())
     }
 
     private fun setTouchRecycleItemListener() {
@@ -89,8 +103,8 @@ class StartFragment : Fragment() {
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 deleteUserWithRestore(
-                    userViewModel.getUsersList()[viewHolder.adapterPosition],
-                    viewHolder.adapterPosition
+                    viewModel.getUsersList()[viewHolder.bindingAdapterPosition],
+                    viewHolder.bindingAdapterPosition
                 )
             }
         }
@@ -100,25 +114,21 @@ class StartFragment : Fragment() {
         binding.textViewAddContacts.setOnClickListener {
             Log.d("Aaaa", "add contact click")
             val dialogFragment = MyDialogFragment()
-            dialogFragment.setViewModel(userViewModel)
+            dialogFragment.setViewModel(viewModel)
             dialogFragment.setAdapter(adapter)
             dialogFragment.show(parentFragmentManager, Constants.DIALOG_TAG)
         }
     }
 
     fun deleteUserWithRestore(contact: User, position: Int) {
-        if (userViewModel.deleteUser(contact)) {
-            adapter.notifyItemRemoved(position)
-            adapter.updateUsers(userViewModel.getUsersList())
+        if (viewModel.deleteUser(contact)) {
             Snackbar.make(
                 binding.recyclerViewContacts,
                 getString(R.string.s_has_been_removed).format(contact.name),
                 Snackbar.LENGTH_LONG
             )
                 .setAction(getString(R.string.restore)) {
-                    if (userViewModel.addUser(contact, position)) {
-                        adapter.notifyItemInserted(position)
-                        adapter.updateUsers(userViewModel.getUsersList())
+                    if (viewModel.addUser(contact, position)) {
                     }
                 }.show()
         }

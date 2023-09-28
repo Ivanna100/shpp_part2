@@ -27,4 +27,30 @@
     <string name="logout">Вийти</string>
     <string name="s_has_been_removed">%s було видалено</string>
     <string name="restore">Відновити</string>
+    <string name="add_contact">Добавити контакт</string>
+    <string name="button_cancel">Закрити</string>
+    <string name="button_add">Добавити</string>
+    <string name="name_lastname_placeholder">Ім\'я Прізвище</string>
+    <string name="career_placeholder">Кар\'єра</string>
+    <string name="home_address_placeholder">Домашня адреса</string>
+    <string name="button_message">повідомлення</string>
+    <string name="text_view_profile">Профіль</string>
+    <string name="edit_profile_button">Налаштувати профіль</string>
+    <string name="view_contacts_button">Мої контакти</string>
+    <!--   Main activity   -->
+    <string name="default_name">Ім\'я</string>
+    <string name="default_lastname">Прізвище</string>
+    <string name="error_email">Email не корректний</string>
+    <!--    Auth screen-->
+    <string name="greeting">Давайте познайомимося</string>
+    <string name="fill_form_proposal">Заповніть профіль та перейдіть до застосунку!</string>
+    <string name="email_placeholder">Пошта</string>
+    <string name="password_placeholder">Пароль</string>
+    <string name="remember_me_checkbox">Запам\'ятати мене</string>
+    <string name="register_button">Зареєструватися</string>
+    <string name="terms_agreement">Натискаючи Зареєструватися ви погоджуєтесь з\nнашими умовами та положеннями</string>
+    <string name="terms_agreement_land">Натискаючи Зареєструватися ви погоджуєтесь знашими умовами та положеннями</string>
+    <string name="have_acc_question">Вже є акаунт?</string>
+    <string name="sign_in_button">Увійти</string>
+
 </resources>

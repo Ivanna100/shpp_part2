@@ -47,7 +47,6 @@ class MyDialogFragment: AppCompatDialogFragment() {
                         ""
                     ),userViewModel.getUsersList().size
                 )
-                adapter.updateUsers(userViewModel.getUsersList())
                 adapter.notifyItemInserted(userViewModel.getUsersList().size - 1)
                 dismiss()
             }

@@ -20,8 +20,57 @@
         android:name="com.example.task_3.ui.fragments.DetailFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_detail">
-    <argument android:name="user"
-        app:argType="com.example.task_3.domain.model.User"/>
+        <argument android:name="user"
+            app:argType="com.example.task_3.domain.model.User"/>
     </fragment>
 
 </navigation>
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<navigation xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:id="@+id/nav_graph"-->
+<!--    app:startDestination="@id/startFragment">-->
+
+<!--    <fragment-->
+<!--        android:id="@+id/viewPagerFragment"-->
+<!--        android:name="com.example.task_3.ui.fragments.ViewPagerFragment"-->
+<!--        android:label="ViewPagerFragment">-->
+<!--        <argument-->
+<!--            android:name="email"-->
+<!--            app:argType="string"-->
+<!--            app:nullable="true" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_viewPagerFragment_to_contactProfile"-->
+<!--            app:destination="@id/contactProfile" />-->
+<!--    </fragment>-->
+<!--    <fragment-->
+<!--        android:id="@+id/contactProfile"-->
+<!--        android:name="com.example.task_3.ui.fragments.ContactProfile"-->
+<!--        android:label="ContactProfile"-->
+<!--        tools:layout="@layout/fragment_detail_view">-->
+<!--        <argument-->
+<!--            android:name="user"-->
+<!--            app:argType="com.example.task_3.domain.model.User" />-->
+<!--    </fragment>-->
+<!--    <fragment-->
+<!--        android:id="@+id/myProfileFragment"-->
+<!--        android:name="com.example.task_3.ui.fragments.MyProfileFragment"-->
+<!--        android:label="MyProfileFragment"-->
+<!--        tools:layout="@layout/fragment_my_profile">-->
+<!--        <argument-->
+<!--            android:name="email"-->
+<!--            app:argType="string" />-->
+<!--    </fragment>-->
+<!--    <fragment-->
+<!--        android:id="@+id/contactsFragment"-->
+<!--        android:name="com.example.task_3.ui.fragments.ContactsFragment"-->
+<!--        android:label="ContactsFragment"-->
+<!--        tools:layout="@layout/fragment_contacts">-->
+<!--        <argument-->
+<!--            android:name="email"-->
+<!--            app:argType="string" />-->
+<!--    </fragment>-->
+
+<!--</navigation>-->

@@ -12,13 +12,14 @@ import com.example.task_3.utils.Constants
 import com.example.task_3.utils.MyDiffUtil
 
 
-class UserListAdapter( private val listener: UserItemClickListener ) :
+class UserListAdapter(private val listener: UserItemClickListener) :
     ListAdapter<User, UserListAdapter.UsersViewHolder>(MyDiffUtil()) {
 
-    inner class UsersViewHolder(val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class UsersViewHolder(val binding: ItemUserBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(user: User) {
-            binding.imageViewDelete.setOnClickListener{
-                listener.onUserDeleteClick(user, adapterPosition)
+            binding.imageViewDelete.setOnClickListener {
+                listener.onUserDeleteClick(user, bindingAdapterPosition)
             }
             with(binding) {
                 textViewName.text = user.name
@@ -28,10 +29,6 @@ class UserListAdapter( private val listener: UserItemClickListener ) :
         }
     }
 
-    private val users = ArrayList<User>()
-
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemUserBinding.inflate(inflater, parent, false)
@@ -40,12 +37,8 @@ class UserListAdapter( private val listener: UserItemClickListener ) :
 
     override fun onBindViewHolder(holder: UsersViewHolder, position: Int) {
         holder.bind(getItem(position))
-        val user = users[position]
+        val user = getItem(position)
         with(holder.binding) {
-//        imageViewDelete.setOnClickListener {
-//            val positionUser = holder.adapterPosition
-//            listener.onUserDeleteClick(user, positionUser)
-//        }
             val arrayOfElements = arrayOf(
                 setTransitionName(imageViewUserPhoto, Constants.TRANSITION_NAME_IMAGE + user.id),
                 setTransitionName(textViewName, Constants.TRANSITION_NAME_NAME + user.id),
@@ -54,21 +47,11 @@ class UserListAdapter( private val listener: UserItemClickListener ) :
             root.setOnClickListener {
                 listener.onUserClick(user, arrayOfElements)
             }
-//            textViewName.text = user.name
-//            textViewCareer.text = user.career
-//            imageViewUserPhoto.loadImage(user.photo)
         }
     }
 
-    private fun setTransitionName(view: View, name: String) : Pair<View, String> {
+    private fun setTransitionName(view: View, name: String): Pair<View, String> {
         view.transitionName = name
         return view to name
-    }
-
-    override fun getItemCount(): Int = users.size
-
-    fun updateUsers(newUsers: ArrayList<User>) {
-        users.clear()
-        users.addAll(newUsers)
     }
 }

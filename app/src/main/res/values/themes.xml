@@ -7,6 +7,27 @@
 
     <style name="Theme.Task_3" parent="Base.Theme.Task_3" />
 
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <!-- Customize your light theme here. -->
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorSecondary">@color/color_secondary</item>
+        <item name="colorTertiary">@color/color_tertiary</item>
+
+        <!-- Text colors. -->
+        <item name="colorControlNormal">@color/color_text_secondary</item>
+        <item name="colorControlActivated">@color/color_text_secondary</item>
+        <item name="colorControlHighlight">@color/color_text_secondary</item>
+
+        <item name="colorOnPrimary">@color/color_text_primary</item>
+        <!--         <item name="colorOnPrimary">@color/color_text_primary</item>-->
+        <!--         <item name="colorControlNormal">@color/color_text_secondary</item>-->
+        <!--         <item name="colorOnTertiary">@color/color_text_additional</item>-->
+
+        <item name="colorError">@color/color_error</item>
+
+    </style>
+
 <!--    <style name="ThemeOverlay.Task_3.FullscreenContainer" parent="">-->
 <!--        <item name="fullscreenBackgroundColor">@color/light_blue_600</item>-->
 <!--        <item name="fullscreenTextColor">@color/light_blue_A200</item>-->
