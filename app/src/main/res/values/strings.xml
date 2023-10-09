@@ -29,11 +29,39 @@
     <string name="add_contact">Add contact</string>
     <string name="button_cancel">Cancel</string>
     <string name="button_add">Add</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="name_lastname_placeholder">Name Lastname</string>
     <string name="career_placeholder">Career</string>
     <string name="home_address_placeholder">Home address</string>
     <string name="button_message">message</string>
     <string name="text_view_profile">Profile</string>
+    <string name="edit_profile_button">Edit profile</string>
+    <string name="view_contacts_button">View my contacts</string>
+    <string name="username">Username</string>
+    <!--   Main activity   -->
+    <string name="default_name">Name</string>
+    <string name="default_lastname">Lastname</string>
+    <string name="error_email">Email is invalid</string>
+    <!--    Auth screen -->
+    <string name="greeting">Let\'s get acquainted</string>
+    <string name="fill_form_proposal">Fill out the profile and go to the application!</string>
+    <string name="email_placeholder">E-mail</string>
+    <string name="password_placeholder">Password</string>
+    <string name="remember_me_checkbox">Remember me</string>
+    <string name="google_button" translatable="false">Google</string>
+    <string name="register_button">Register</string>
+    <string name="terms_agreement">By clicking Register you agree to our Terms\nand Conditions</string>
+    <string name="terms_agreement_land">By clicking Register you agree to our Terms and Conditions</string>
+    <string name="have_acc_question">Already have an account?</string>
+    <string name="sign_in_button">Sign in</string>
+    <!-- fragment contacts -->
+    <string name="contacts_removed">Contacts has been removed</string>
+    <string name="contact_removed">Contact has been removed</string>
+    <!-- fragment dialog -->
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="phone">Phone</string>
+    <string name="address">Address</string>
+    <string name="date_of_birth">Date of birth</string>
+
+
 </resources>

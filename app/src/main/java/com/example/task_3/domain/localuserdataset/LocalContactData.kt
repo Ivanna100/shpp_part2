@@ -1,16 +1,16 @@
 package com.example.task_3.domain.localuserdataset
 
-import com.example.task_3.domain.model.User
+import com.example.task_3.domain.model.Contact
 import com.github.javafaker.Faker
 
-class LocalUserData {
-    private var users = mutableListOf<User>()
+class LocalContactData {
+    private var users = mutableListOf<Contact>()
 
     init {
         val faker = Faker.instance()
 
         users = (1..20).map {
-            User(
+            Contact(
                 name = faker.name().fullName(),
                 career = faker.company().name(),
                 photo = IMAGES[it % IMAGES.size],
@@ -33,5 +33,5 @@ class LocalUserData {
         )
     }
 
-    fun getLocalContactsList(): List<User> = users
+    fun getLocalContactsList(): List<Contact> = users
 }
