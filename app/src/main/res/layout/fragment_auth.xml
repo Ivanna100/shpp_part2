@@ -39,10 +39,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/small_margin"
+        android:layout_marginTop="@dimen/margin_big"
         android:text="@string/e_mail"
         android:textColor="@color/gray"
         app:layout_constraintStart_toStartOf="@id/textInputEmail"
-        app:layout_constraintTop_toTopOf="@id/guideLineHorizontal035" />
+        app:layout_constraintTop_toBottomOf="@id/guideLineHorizontal035" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputEmail"
@@ -57,9 +58,10 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEditTextEmail"
             android:layout_width="match_parent"
-            android:maxLength="30"
             android:layout_height="@dimen/edit_text_height"
+            android:paddingTop="@dimen/padding_edit_text"
             android:inputType="textEmailAddress"
+            android:maxLength="30"
             android:textColor="@color/white"
             android:textSize="@dimen/edit_text_size" />
 
@@ -90,27 +92,7 @@
         app:layout_constraintStart_toStartOf="@id/textInputEmail"
         app:layout_constraintTop_toBottomOf="@id/textInputEmail" />
 
-    <com.google.android.material.textfield.TextInputLayout
 
-        android:id="@+id/textInputPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/normal_margin"
-        app:boxBackgroundMode="none"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewPassword">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textInputEditTextPassword"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/edit_text_height"
-            android:maxLength="20"
-            android:inputType="textPassword"
-            android:textColor="@color/white"
-            android:textSize="@dimen/edit_text_size" />
-
-    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textViewInvalidPassword"
@@ -233,12 +215,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.2" />
+        app:layout_constraintGuide_percent="0.15" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideLineHorizontal035"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.35" />
+        app:layout_constraintGuide_percent="0.3" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/normal_margin"
+        app:boxBackgroundMode="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewPassword">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputEditTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/edit_text_height"
+            android:paddingTop="@dimen/padding_edit_text"
+            android:maxLength="20"
+            android:inputType="textPassword"
+            android:textColor="@color/white"
+            android:textSize="@dimen/edit_text_size" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

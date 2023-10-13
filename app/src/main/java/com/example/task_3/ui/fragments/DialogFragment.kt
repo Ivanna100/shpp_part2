@@ -40,6 +40,7 @@ class DialogFragment: AppCompatDialogFragment() {
         val inflater = requireActivity().layoutInflater
         val dialogView = inflater.inflate(R.layout.fragment_add_contact, null)
         builder.setView(dialogView)
+        binding = FragmentAddContactBinding.bind(dialogView)
         setListeners()
         return builder.create()
     }

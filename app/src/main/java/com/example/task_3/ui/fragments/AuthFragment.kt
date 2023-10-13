@@ -12,8 +12,9 @@ import com.example.task_3.databinding.FragmentAuthBinding
 import com.example.task_3.utils.Constants
 import com.example.task_3.utils.DataStoreManager
 import com.example.task_3.utils.Validation
-import com.example.task_3.utils.invisible
-import com.example.task_3.utils.visibleIf
+import com.example.task_3.utils.ext.invisible
+import com.example.task_3.utils.ext.log
+import com.example.task_3.utils.ext.visibleIf
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -25,7 +26,7 @@ class AuthFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentAuthBinding.inflate(inflater, container, false)
         setListeners()
         dataValidation()
@@ -35,8 +36,9 @@ class AuthFragment : Fragment() {
     private fun setListeners() {
         with(binding) {
             buttonRegister.setOnClickListener {
-                if(Validation().isEmailValid(textInputEditTextEmail.text.toString()) &&
-                        Validation().isPasswordValid(textInputEditTextPassword.text.toString())) {
+                if(Validation.isValidEmail(textInputEditTextEmail.text.toString()) &&
+                        Validation.isValidPassword(textInputEditTextPassword.text.toString())) {
+
                     if(checkboxRemember.isChecked) saveData()
                     val direction = AuthFragmentDirections.actionAuthFragmentToViewPagerFragment(
                         textInputEditTextEmail.text.toString()
@@ -66,13 +68,13 @@ class AuthFragment : Fragment() {
         with(binding) {
             textInputEditTextEmail.doOnTextChanged { text, _, _, _ ->
                 textViewInvalidEmail.visibleIf(
-                    !Validation().isEmailValid(text.toString()) && !text.isNullOrEmpty()
+                    !Validation.isValidEmail(text.toString()) && !text.isNullOrEmpty()
                 )
             }
             textInputEditTextPassword.doOnTextChanged { text, _, _, _ ->
                 if (!text.isNullOrEmpty()) {
                     textViewInvalidPassword.visibility =
-                        if (!Validation().isPasswordValid(text.toString())) View.INVISIBLE else View.VISIBLE
+                        if (!Validation.isValidPassword(text.toString())) View.VISIBLE else View.INVISIBLE
                 } else {
                     textViewInvalidPassword.invisible()
                 }

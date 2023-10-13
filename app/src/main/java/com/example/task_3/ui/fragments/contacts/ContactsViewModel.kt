@@ -35,7 +35,7 @@ class ContactsViewModel : ViewModel() {
     fun addSelectContact(contact: Contact): Boolean {
         val contactList = _selectContacts.value?.toMutableList() ?: mutableListOf()
 
-        if(contactList.contains(contact)) {
+        if(!contactList.contains(contact)) {
             contactList.add(contact)
             _selectContacts.value = contactList
             return true

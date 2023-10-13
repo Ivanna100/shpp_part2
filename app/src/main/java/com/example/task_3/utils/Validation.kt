@@ -2,11 +2,12 @@ package com.example.task_3.utils
 
 import android.util.Patterns
 
-class Validation {
+object Validation {
 
-    fun isEmailValid(email: String) : Boolean =
+    fun isValidEmail(email: String): Boolean =
         Patterns.EMAIL_ADDRESS.matcher(email).matches()
 
-    fun isPasswordValid(password: String) : Boolean =
+    fun isValidPassword(password: String): Boolean =
         Regex(Constants.PASSWORD_REGEX).matches(password) && !password.contains(" ")
+
 }

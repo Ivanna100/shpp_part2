@@ -11,14 +11,14 @@
     <dimen name="text_large_size">24sp</dimen>
     <dimen name="text_largest_size">32sp</dimen>
 
-    <dimen name="edit_text_height">57dp</dimen>
+    <dimen name="edit_text_height">40dp</dimen>
     <dimen name="google_text_start">36dp</dimen>
     <dimen name="register_height">55dp</dimen>
     <dimen name="google_text_height_land">35dp</dimen>
     <dimen name="register_height_land">40dp</dimen>
     <dimen name="view_contacts_height">60dp</dimen>
     <dimen name="photo_size">140dp</dimen>
-    <dimen name="edit_text_size">18sp</dimen>
+    <dimen name="edit_text_size">16sp</dimen>
     <dimen name="custom_padding">120dp</dimen>
     <dimen name="recycler_view_padding">170dp</dimen>
     <dimen name="item_user_height">66dp</dimen>
@@ -55,6 +55,7 @@
     <!--  Paddings  -->
     <dimen name="padding_default">8dp</dimen>
     <dimen name="padding_middle">16dp</dimen>
+    <dimen name="padding_edit_text">6dp</dimen>
 
 
 </resources>

@@ -1,8 +1,10 @@
 package com.example.task_3.domain.model
 
-import java.io.Serializable
+import kotlinx.parcelize.Parcelize
+import android.os.Parcelable
 import java.util.UUID
 
+@Parcelize
 data class Contact(
     val name: String,
     val career: String,
@@ -13,4 +15,4 @@ data class Contact(
     val address: String = "",
     val date: String = "",
     var isChecked: Boolean = false
-) : Serializable
+) : Parcelable

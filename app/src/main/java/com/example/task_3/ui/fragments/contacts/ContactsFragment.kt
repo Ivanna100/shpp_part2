@@ -12,11 +12,13 @@ import com.example.task_3.R
 import com.example.task_3.databinding.FragmentContactsBinding
 import com.example.task_3.domain.model.Contact
 import com.example.task_3.ui.fragments.BaseFragment
+import com.example.task_3.ui.fragments.DialogFragment
 import com.example.task_3.ui.fragments.viewpager.ViewPagerFragment
 import com.example.task_3.ui.fragments.viewpager.ViewPagerFragmentDirections
-import com.example.task_3.utils.showErrorSnackBar
+import com.example.task_3.utils.Constants
+import com.example.task_3.utils.ext.log
+import com.example.task_3.utils.ext.showErrorSnackBar
 import com.google.android.material.snackbar.Snackbar
-
 
 class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsBinding:: inflate) {
 
@@ -24,6 +26,7 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsB
 
     private val adapter: ContactsListAdapter by lazy {
         ContactsListAdapter(listener = object : ContactItemClickListener {
+
             override fun onClickDelete(contact: Contact) {
                 deleteUserWithRestore(contact)
             }
@@ -71,7 +74,7 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsB
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initialRecyclerview()
-
+        setClickListener()
         setObservers()
     }
 
@@ -99,11 +102,21 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsB
 
     private fun setClickListener() {
         navigationBack()
+        showAddContactsDialog()
+        deleteSelectedContacts()
+    }
+
+    private fun showAddContactsDialog() {
+        binding.textViewAddContacts.setOnClickListener {
+            val dialogFragment = DialogFragment()
+            dialogFragment.setViewModel(viewModel)
+            dialogFragment.show(parentFragmentManager, Constants.DIALOG_TAG)
+        }
     }
 
     private fun navigationBack() {
         binding.imageViewNavigationBack.setOnClickListener{
-            (parentFragment as ViewPagerFragment)?.openFragment(1)
+            (parentFragment as ViewPagerFragment)?.openFragment(0)
         }
         val callback = object : OnBackPressedCallback (true) {
             override fun handleOnBackPressed() {

@@ -18,7 +18,7 @@ class UserProfile : BaseFragment<FragmentUserProfileBinding> (FragmentUserProfil
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUserProfile()
-
+        setListeners()
     }
 
     private fun setListeners() {
@@ -50,7 +50,7 @@ class UserProfile : BaseFragment<FragmentUserProfileBinding> (FragmentUserProfil
     }
 
     private fun setUserName(email: String) {
-        val elements = email.split("@")[0].split(".")
+        val elements = email.split("@")[0].replace(".", " ").split(" ")
         binding.tvFullName.text = if(elements.size >= 2) {
             "${elements[0].replaceFirstChar { it.uppercase() }} ${elements[1].replaceFirstChar { it.titlecase() }}"
         } else {
