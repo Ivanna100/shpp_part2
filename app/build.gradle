@@ -8,11 +8,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.task_3'
+    namespace 'com.example.task_4'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.example.task_3"
+        applicationId "com.example.task_4"
         minSdk 24
         targetSdk 34
         versionCode 1
@@ -40,7 +40,11 @@ android {
     }
 }
 
+//TODO update all libraries
 dependencies {
+
+
+
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.10.0'

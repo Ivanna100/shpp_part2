@@ -3,9 +3,9 @@
     <style name="Base.Theme.Task_4" parent="Theme.AppCompat.NoActionBar">
     </style>
 
-    <style name="Theme.Task_4" parent="Base.Theme.Task_4" />
+<!--    <style name="Theme.Task_4" parent="Base.Theme.Task_4" />-->
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.Task_4" parent="Theme.AppCompat.Light.NoActionBar">
 
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">@color/color_primary</item>

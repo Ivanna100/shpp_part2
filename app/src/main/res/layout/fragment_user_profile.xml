@@ -26,7 +26,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view_top_half_background" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <TextView
         android:id="@+id/tvSettings"
         style="@style/text_header"
         android:layout_width="wrap_content"
@@ -62,7 +62,7 @@
         app:shapeAppearanceOverlay="@style/circleImageView"
         app:srcCompat="@drawable/baseline_person_24" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <TextView
         android:id="@+id/tvFullName"
         style="@style/text_big"
         android:textColor="@color/white"
@@ -74,25 +74,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivAvatar" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <TextView
         android:id="@+id/tvCareer"
         style="@style/text_middle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_default"
-        android:text="@string/career_placeholder"
+        android:text="fsdafasdf"
         android:textColor="@color/color_text_secondary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvFullName" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <TextView
         android:id="@+id/tvAddress"
         style="@style/text_middle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_middle"
-        android:text="@string/home_address_placeholder"
+        android:text="fasdfasdf"
         android:textColor="@color/color_text_secondary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -141,7 +141,7 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="VisualLintButtonSize" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
         android:id="@+id/btnViewContacts"
         style="@style/text_button"
         android:textColor="?attr/colorOnPrimary"

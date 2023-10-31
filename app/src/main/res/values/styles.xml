@@ -40,7 +40,7 @@
 
     <!--**************** View styles ****************-->
     <!--  CheckBox  -->
-    <style name="chk_remember" parent="AppTheme">
+    <style name="chk_remember" parent="Theme.Task_4">
         <item name="fontFamily">@font/work_sans_semi_bold</item>
         <item name="android:textSize">@dimen/text_middle_size</item>
         <item name="android:button">@drawable/checkbox_remember</item>
