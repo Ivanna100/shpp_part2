@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.task_3.R
 import com.example.task_3.databinding.FragmentContactsBinding
-import com.example.task_3.domain.model.Contact
+import com.example.task_3.data.model.Contact
 import com.example.task_3.ui.fragments.BaseFragment
 import com.example.task_3.ui.fragments.DialogFragment
 import com.example.task_3.ui.fragments.viewpager.ViewPagerFragment

@@ -1,6 +1,10 @@
 package com.example.task_3.utils
 
 object Constants {
+
+    // server
+    const val BASE_URL = "http://178.63.9.114:7777/api/"
+
     const val DIALOG_TAG = "add_contact_dialog"
     const val LOG_TAG = "LOG_TAG"
     const val TRANSITION_NAME_IMAGE = "TRANSITION_NAME_IMAGE"
@@ -18,4 +22,10 @@ object Constants {
     // validation
     const val PASSWORD_REGEX =
         "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)[A-Za-z\\d]{7,}\$"
+
+    // authorization prefix
+    const val AUTHORIZATION_PREFIX = "Bearer"
+
+    // error message
+    const val OPERATION_ERROR = "Operation error!"
 }

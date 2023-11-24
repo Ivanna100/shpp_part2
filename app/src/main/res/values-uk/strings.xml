@@ -37,6 +37,7 @@
     <string name="text_view_profile">Профіль</string>
     <string name="edit_profile_button">Налаштувати профіль</string>
     <string name="view_contacts_button">Мої контакти</string>
+    <string name="log_out">Вийти</string>
     <!--   Main activity   -->
     <string name="default_name">Ім\'я</string>
     <string name="default_lastname">Прізвище</string>

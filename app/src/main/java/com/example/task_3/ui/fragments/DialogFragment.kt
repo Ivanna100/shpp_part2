@@ -10,7 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDialogFragment
 import com.example.task_3.R
 import com.example.task_3.databinding.FragmentAddContactBinding
-import com.example.task_3.domain.model.Contact
+import com.example.task_3.data.model.Contact
 import com.example.task_3.ui.fragments.contacts.ContactsViewModel
 import com.example.task_3.utils.ext.loadImage
 

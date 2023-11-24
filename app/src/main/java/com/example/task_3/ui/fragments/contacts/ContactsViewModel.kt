@@ -3,8 +3,8 @@ package com.example.task_3.ui.fragments.contacts
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.task_3.domain.localuserdataset.LocalContactData
-import com.example.task_3.domain.model.Contact
+import com.example.task_3.data.localuserdataset.LocalContactData
+import com.example.task_3.data.model.Contact
 
 class ContactsViewModel : ViewModel() {
 
