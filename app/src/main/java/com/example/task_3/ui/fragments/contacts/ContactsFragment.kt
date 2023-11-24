@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +17,7 @@ import com.example.task_3.ui.fragments.DialogFragment
 import com.example.task_3.ui.fragments.viewpager.ViewPagerFragment
 import com.example.task_3.ui.fragments.viewpager.ViewPagerFragmentDirections
 import com.example.task_3.utils.Constants
+import com.example.task_3.utils.Fragments
 import com.example.task_3.utils.ext.log
 import com.example.task_3.utils.ext.showErrorSnackBar
 import com.google.android.material.snackbar.Snackbar
@@ -116,11 +118,11 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsB
 
     private fun navigationBack() {
         binding.imageViewNavigationBack.setOnClickListener{
-            (parentFragment as ViewPagerFragment)?.openFragment(0)
+            (parentFragment as ViewPagerFragment)?.openFragment(Fragments.USER_PROFILE.ordinal)
         }
         val callback = object : OnBackPressedCallback (true) {
             override fun handleOnBackPressed() {
-                (requireParentFragment() as? ViewPagerFragment)?.openFragment(0)
+                (requireParentFragment() as? ViewPagerFragment)?.openFragment(Fragments.USER_PROFILE.ordinal)
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
@@ -143,7 +145,7 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsB
     }
 
     private fun setTouchCallBackListener(): ItemTouchHelper.Callback {
-        return object: ItemTouchHelper.SimpleCallback(0,0) {
+        return object : ItemTouchHelper.SimpleCallback(0, 0) {
             override fun onMove(
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder,
@@ -161,7 +163,8 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsB
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 deleteUserWithRestore(
-                    viewModel.contactList.value?.getOrNull(viewHolder.bindingAdapterPosition)!!)
+                    viewModel.contactList.value?.getOrNull(viewHolder.bindingAdapterPosition)!!
+                )
             }
 
             override fun isItemViewSwipeEnabled(): Boolean {

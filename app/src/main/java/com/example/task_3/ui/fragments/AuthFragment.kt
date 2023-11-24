@@ -18,19 +18,12 @@ import com.example.task_3.utils.ext.visibleIf
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class AuthFragment : Fragment() {
-
-    private lateinit var binding: FragmentAuthBinding
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentAuthBinding.inflate(inflater, container, false)
+class AuthFragment : BaseFragment<FragmentAuthBinding>(FragmentAuthBinding :: inflate) {
+    override fun onViewCreated( view: View,
+        savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         setListeners()
         dataValidation()
-        return binding.root
     }
 
     private fun setListeners() {

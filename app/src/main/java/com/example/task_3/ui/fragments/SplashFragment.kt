@@ -1,12 +1,8 @@
 package com.example.task_3.ui.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
-import com.example.task_3.R
 import com.example.task_3.databinding.FragmentSplashBinding
 import com.example.task_3.utils.Constants
 import com.example.task_3.utils.DataStoreManager
