@@ -21,8 +21,6 @@
     <string name="home_address">Home address</string>
     <string name="view_my_contacts">VIEW MY CONTACTS</string>
     <string name="edit_profile">Edit profile</string>
-    <string name="invalid_email">invalid email</string>
-    <string name="invalid_password">invalid password</string>
     <string name="logout">Logout</string>
     <string name="s_has_been_removed">%s has been removed</string>
     <string name="restore">Restore</string>
@@ -76,6 +74,17 @@
     <string name="mobile_phone">Mobile phone</string>
     <string name="forward">FORWARD</string>
     <string name="operation_error">Operation error!</string>
-
-
+    <!-- errors -->
+    <string name="not_correct_input">Invalid email or password</string>
+    <string name="automatic_login_error">Automatic login error</string>
+    <string name="register_error_user_exist">User already exists</string>
+    <string name="invalid_request">Invalid request</string>
+    <string name="invalid_username">Invalid user name</string>
+    <string name="invalid_mobile_phone">Invalid mobile phone</string>
+    <string name="already_have_this_a_contact">Already have this a contact</string>
+    <string name="contact_not_found">Contact not found</string>
+    <string name="invalid_email">Invalid email</string>
+    <string name="invalid_password">Invalid password</string>
+    <string name="phone_must_be_at_least_10_digits_long">Phone must be at least 10 digits long</string>
+    <string name="user_name_must_contain_at_least_3_letters">User name must contain at least 3 letters</string>
 </resources>

@@ -11,11 +11,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.task_3'
+    namespace 'com.example.task_5'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.example.task_3"
+        applicationId "com.example.task_5"
         minSdk 24
         targetSdk 34
         versionCode 1
@@ -71,7 +71,7 @@ dependencies {
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
     // hilt
     implementation 'com.google.dagger:hilt-android:2.48'
-    kapt 'com.google.dagger:hilt-compiler:2.46.1'
+    kapt 'com.google.dagger:hilt-compiler:2.48'
     // retrofit2
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     // gson

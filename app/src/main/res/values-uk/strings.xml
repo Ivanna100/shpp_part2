@@ -22,8 +22,6 @@
     <string name="home_address">Домашня адреса</string>
     <string name="view_my_contacts">ПЕРЕГЛЯНУТИ МОЇ КОНТАКТИ</string>
     <string name="edit_profile">Редагувати профіль</string>
-    <string name="invalid_email">недійсна електронна пошта</string>
-    <string name="invalid_password">недійсний пароль</string>
     <string name="logout">Вийти</string>
     <string name="s_has_been_removed">%s було видалено</string>
     <string name="restore">Відновити</string>
@@ -63,4 +61,17 @@
     <string name="phone">Телефон</string>
     <string name="address">Адреса</string>
     <string name="date_of_birth">Дата народження</string>
+    <!-- errors -->
+    <string name="not_correct_input">Невірна адреса електронної пошти або пароль</string>
+    <string name="automatic_login_error">Помилка автоматичного входу</string>
+    <string name="register_error_user_exist">Користувач вже існує</string>
+    <string name="invalid_request">Невірний запит</string>
+    <string name="invalid_username">Недійсне ім\'я</string>
+    <string name="invalid_mobile_phone">Недійсний мобільний телефон</string>
+    <string name="already_have_this_a_contact">Вже є цей контакт</string>
+    <string name="contact_not_found">Контакт не знайдено</string>
+    <string name="invalid_email">Недійсна електронна пошта</string>
+    <string name="invalid_password">Недійсний пароль</string>
+    <string name="phone_must_be_at_least_10_digits_long">Телефон повинен містити принаймні 10 цифр</string>
+    <string name="user_name_must_contain_at_least_3_letters">Ім\'я користувача повинно містити принаймні 3 букви</string>
 </resources>
