@@ -8,6 +8,7 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDialogFragment
+import androidx.fragment.app.viewModels
 import com.example.task_5.R
 import com.example.task_5.databinding.FragmentAddContactBinding
 import com.example.task_5.data.model.Contact
@@ -20,7 +21,7 @@ class DialogFragment: AppCompatDialogFragment() {
 
     private var photoUri: Uri? = null
 
-    private var viewModel = ContactsViewModel()
+    private val viewModel : ContactsViewModel by viewModels()
 
     private val requestImageLauncher =
         registerForActivityResult(ActivityResultContracts.PickVisualMedia()) {
@@ -30,10 +31,6 @@ class DialogFragment: AppCompatDialogFragment() {
                 binding.imageViewNewContactMockup.visibility = View.GONE
             }
         }
-
-    fun setViewModel(userViewModel: ContactsViewModel) {
-        this.viewModel = userViewModel
-    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(requireActivity())
@@ -66,17 +63,17 @@ class DialogFragment: AppCompatDialogFragment() {
 
     private fun saveNewContact() {
         binding.buttonSave.setOnClickListener{
-            viewModel.addContact(
-                Contact(
-                    name = binding.textInputEditTextUserName.text.toString(),
-                    career = binding.textInputEditTextCareer.text.toString(),
-                    photo = photoUri.toString(),
-                    email = binding.textInputEditTextEmail.text.toString(),
-                    phone = binding.textInputEditTextPhone.text.toString(),
-                    address = binding.textInputEditTextAddress.text.toString(),
-                    date = binding.textInputEditTextDateOfBirth.text.toString()
-                )
-            )
+//            viewModel.addContact(
+//                Contact(
+//                    name = binding.textInputEditTextUserName.text.toString(),
+//                    career = binding.textInputEditTextCareer.text.toString(),
+//                    photo = photoUri.toString(),
+//                    //email = binding.textInputEditTextEmail.text.toString(),
+//                    //phone = binding.textInputEditTextPhone.text.toString(),
+//                    address = binding.textInputEditTextAddress.text.toString(),
+//                    //date = binding.textInputEditTextDateOfBirth.text.toString()
+//                )
+//            )
             dismiss()
         }
     }

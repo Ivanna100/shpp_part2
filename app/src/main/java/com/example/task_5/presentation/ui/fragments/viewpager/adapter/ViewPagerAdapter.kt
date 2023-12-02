@@ -27,7 +27,7 @@ class ViewPagerAdapter(fragment: Fragment, private val args: ViewPagerFragmentAr
         }
     }
 
-    enum class Fragments(){
+    enum class Fragments {
         USER_PROFILE,
         CONTACTS
     }

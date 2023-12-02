@@ -11,8 +11,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
-import com.example.task_3.R
-import com.example.task_3.databinding.SignUpExtendedBinding
+import com.example.task_5.R
+import com.example.task_5.databinding.SignUpExtendedBinding
 import com.example.task_5.data.model.UserRequest
 import com.example.task_5.data.model.UserWithTokens
 import com.example.task_5.domain.state.UserApiResultState

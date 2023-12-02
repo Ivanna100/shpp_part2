@@ -3,7 +3,7 @@ package com.example.task_5.presentation.ui.fragments.auth.signup
 import android.os.Bundle
 import android.view.View
 import androidx.core.widget.doOnTextChanged
-import com.example.task_3.databinding.FragmentSignUpBinding
+import com.example.task_5.databinding.FragmentSignUpBinding
 import com.example.task_5.presentation.ui.fragments.BaseFragment
 import com.example.task_5.utils.Validation
 import com.example.task_5.utils.ext.visibleIf

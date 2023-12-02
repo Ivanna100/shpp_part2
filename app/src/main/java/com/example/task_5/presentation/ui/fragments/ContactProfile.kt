@@ -7,7 +7,6 @@ import androidx.navigation.fragment.navArgs
 import com.example.task_5.R
 import com.example.task_5.databinding.FragmentDetailBinding
 import com.example.task_5.data.model.Contact
-import com.example.task_5.presentation.fragments.ContactProfileArgs
 import com.example.task_5.utils.Constants
 import com.example.task_5.utils.ext.loadImage
 

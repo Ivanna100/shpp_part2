@@ -1,26 +1,25 @@
 package com.example.task_5.data.repository
 
-import com.example.task_3.R
+import com.example.task_5.R
 import com.example.task_5.data.UserDataHolder
 import com.example.task_5.data.model.Contact
 import com.example.task_5.data.model.UserData
 import com.example.task_5.domain.network.ContactsApiService
-import com.example.task_5.domain.repository.ContactRepository
+import com.example.task_5.domain.repository.ContactsRepository
 import com.example.task_5.domain.state.ArrayDataApiResultState
-import com.example.task_5.utils.Constants
 import com.example.task_5.utils.Constants.AUTHORIZATION_PREFIX
-import com.example.task_5.utils.Constants.OPERATION_ERROR
 import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class ContactsRepositoryImpl @Inject constructor(private val service: ContactsApiService,
-private val repository: ContactRepository) {
+class ContactsRepositoryImpl @Inject constructor(
+    private val service: ContactsApiService
+    ) : ContactsRepository  {
 
-    suspend fun getAllUsers(accessToken: String, user : UserData): ArrayDataApiResultState {
+    override suspend fun getAllUsers(accessToken: String, user : UserData): ArrayDataApiResultState {
         return try {
-            val response = service.getAllUsers("${Constants.AUTHORIZATION_PREFIX}$accessToken")
+            val response = service.getAllUsers("$AUTHORIZATION_PREFIX$accessToken")
             val contacts = UserDataHolder.getContacts()
             val filteredUsers = response.data.users?.filter {
                 it.name != null && it.email != user.email && !contacts.contains(it.toContact())
@@ -34,7 +33,7 @@ private val repository: ContactRepository) {
         }
     }
 
-    suspend fun addContact(
+    override suspend fun addContact(
         userId: Long,
         accessToken: String,
         contact: Contact
@@ -53,15 +52,15 @@ private val repository: ContactRepository) {
         }
     }
 
-    suspend fun deleteContact(
+    override suspend fun deleteContact(
         userId: Long,
-        contact: Contact,
-        accessToken: String
+        accessToken: String,
+        contactId : Long
     ): ArrayDataApiResultState {
         return try {
             val response = service.deleteContact(
-                userId, contact.id,
-                "${AUTHORIZATION_PREFIX}$accessToken"
+                userId, contactId,"${AUTHORIZATION_PREFIX}$accessToken"
+
             )
             response.data.let { ArrayDataApiResultState.Success(it.contacts) }
         } catch (e: Exception) {
@@ -69,7 +68,7 @@ private val repository: ContactRepository) {
         }
     }
 
-    suspend fun getUserContacts(userId: Long, accessToken: String): ArrayDataApiResultState {
+    override suspend fun getUserContacts(userId: Long, accessToken: String): ArrayDataApiResultState {
         return try {
             val response = service.getUserContacts(userId, "${AUTHORIZATION_PREFIX}$accessToken")
             UserDataHolder.setContactList((response.data.contacts?.map { it.toContact() }

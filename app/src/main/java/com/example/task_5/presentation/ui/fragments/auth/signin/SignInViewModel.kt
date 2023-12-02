@@ -14,13 +14,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SignInViewModel @Inject constructor(
-    private val accountRepositoryImpl : AccountRepositoryImpl) : ViewModel() {
+//    private val accountRepositoryImpl : AccountRepositoryImpl
+) : ViewModel() {
 
     private val _authorizationStateFlow = MutableStateFlow<UserApiResultState>(UserApiResultState.Initial)
     val authorizationState : StateFlow<UserApiResultState> = _authorizationStateFlow
 
     fun authorizationUser(body : UserRequest) = viewModelScope.launch(Dispatchers.IO) {
         _authorizationStateFlow.value = UserApiResultState.Loading
-        _authorizationStateFlow.value = accountRepositoryImpl.authorizeUser(body)
+        //_authorizationStateFlow.value = accountRepositoryImpl.authorizeUser(body)
     }
 }

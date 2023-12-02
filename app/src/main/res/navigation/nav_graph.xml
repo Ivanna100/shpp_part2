@@ -80,7 +80,7 @@
         tools:layout="@layout/fragment_detail">
         <argument
             android:name="Contact"
-            app:argType="com.example.task_3.domain.model.Contact" />
+            app:argType="com.example.task_5.data.model.Contact" />
     </fragment>
     <fragment
         android:id="@+id/userProfile"

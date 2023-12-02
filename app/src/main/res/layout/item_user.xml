@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/item_user_height"
     android:layout_marginHorizontal="@dimen/normal_margin"
-    android:layout_marginTop="@dimen/small_margin">
+    android:layout_marginTop="@dimen/small_margin"
+    android:background="@color/white">
 
     <View
         android:id="@+id/viewBorder"

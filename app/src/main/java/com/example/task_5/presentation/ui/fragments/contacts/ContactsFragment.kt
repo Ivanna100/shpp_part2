@@ -9,12 +9,12 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.task_5.R
-import com.example.task_5.databinding.FragmentContactsBinding
 import com.example.task_5.data.model.Contact
+import com.example.task_5.databinding.FragmentContactsBinding
 import com.example.task_5.presentation.ui.fragments.BaseFragment
 import com.example.task_5.presentation.ui.fragments.DialogFragment
+import com.example.task_5.presentation.ui.fragments.contacts.adapter.interfaces.ContactItemClickListener
 import com.example.task_5.presentation.ui.fragments.viewpager.ViewPagerFragment
-import com.example.task_5.presentation.fragments.viewpager.ViewPagerFragmentDirections
 import com.example.task_5.utils.Constants
 import com.example.task_5.utils.ext.showErrorSnackBar
 import com.google.android.material.snackbar.Snackbar
@@ -35,38 +35,38 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsB
                 transitionPairs: Array<Pair<View, String>>
             ) {
                 if(adapter.isMultiselectMode) {
-                    contact.isChecked = !contact.isChecked
-                    if(contact.isChecked && viewModel.selectContacts.value?.contains(contact) == false)
-                        viewModel.addSelectContact(contact)
-                    if(!contact.isChecked && viewModel.selectContacts.value?.contains(contact) == true)
-                        viewModel.deleteSelectContact(contact)
-                    if(viewModel.selectContacts.value?.size == 0 )
-                        viewModel.changeMultiselectMode()
+//                    contact.isChecked = !contact.isChecked
+//                    if(contact.isChecked && viewModel.selectContacts.value?.contains(contact) == false)
+//                        viewModel.addSelectContact(contact)
+//                    if(!contact.isChecked && viewModel.selectContacts.value?.contains(contact) == true)
+//                        viewModel.deleteSelectContact(contact)
+//                    if(viewModel.selectContacts.value?.size == 0 )
+//                        viewModel.changeMultiselectMode()
                 } else {
                     val extras = FragmentNavigatorExtras(*transitionPairs)
-                     val direction =
-                         ViewPagerFragmentDirections.actionViewPagerFragmentToContactProfile(contact)
-                    navController.navigate(direction, extras)
+//                     val direction =
+//                         ViewPagerFragmentDirections.actionViewPagerFragmentToContactProfile(contact)
+//                    navController.navigate(direction, extras)
                 }
             }
 
             override fun onLongClick(contact: Contact) {
                 removeChecked()
-                contact.isChecked = true
+//                contact.isChecked = true
                 viewModel.changeMultiselectMode()
                 if(viewModel.isMultiselect.value == true) viewModel.addSelectContact(contact)
                 else removeChecked()
             }
 
-            override fun onOpenNewFragment(
-                contact: Contact,
-                transitionPairs: Array<Pair<View, String>>
-            ) {
-                val direction =
-                    ViewPagerFragmentDirections.actionViewPagerFragmentToContactProfile(contact)
-                val extras = FragmentNavigatorExtras(*transitionPairs)
-                navController.navigate(direction, extras)
-            }
+//            override fun onOpenNewFragment(
+//                contact: Contact,
+//                transitionPairs: Array<Pair<View, String>>
+//            ) {
+////                val direction =
+////                    ViewPagerFragmentDirections.actionViewPagerFragmentToContactProfile(contact)
+////                val extras = FragmentNavigatorExtras(*transitionPairs)
+////                navController.navigate(direction, extras)
+//            }
         })
     }
 
@@ -78,9 +78,9 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsB
     }
 
     private fun setObservers() {
-        viewModel.contactList.observe(viewLifecycleOwner) {
-            adapter.submitList(it)
-        }
+//        viewModel.contactList.observe(viewLifecycleOwner) {
+//            adapter.submitList(it)
+//        }
         viewModel.isMultiselect.observe(viewLifecycleOwner) {
             binding.recyclerViewContacts.adapter = adapter
             adapter.isMultiselectMode = it
@@ -108,14 +108,14 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsB
     private fun showAddContactsDialog() {
         binding.textViewAddContacts.setOnClickListener {
             val dialogFragment = DialogFragment()
-            dialogFragment.setViewModel(viewModel)
+//            dialogFragment.setViewModel(viewModel)
             dialogFragment.show(parentFragmentManager, Constants.DIALOG_TAG)
         }
     }
 
     private fun navigationBack() {
         binding.imageViewNavigationBack.setOnClickListener{
-            (parentFragment as ViewPagerFragment)?.openFragment(0)
+            (parentFragment as ViewPagerFragment).openFragment(0)
         }
         val callback = object : OnBackPressedCallback (true) {
             override fun handleOnBackPressed() {
@@ -128,7 +128,7 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsB
     private fun deleteSelectedContacts() {
         binding.imageViewDeleteSelectMode.setOnClickListener{
             val size = viewModel.selectContacts.value?.size
-            viewModel.deleteSelectList()
+//            viewModel.deleteSelectList()
             binding.root.showErrorSnackBar(requireContext(), if(size!! > 1) R.string.contacts_removed
                 else R.string.contact_removed)
             viewModel.changeMultiselectMode()
@@ -137,7 +137,7 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsB
 
     private fun removeChecked() {
         viewModel.contactList.value?.forEach { contact ->
-            contact.isChecked = false
+//            contact.isChecked = false
         }
     }
 
@@ -171,15 +171,15 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsB
 
     fun deleteUserWithRestore(contact: Contact) {
         val position = getPosition(contact)
-        if(viewModel.deleteContact(contact)) {
-            Snackbar.make(
-                binding.recyclerViewContacts,
-                getString(R.string.s_has_been_removed).format(contact.name),
-                Snackbar.LENGTH_LONG
-            ).setAction(getString(R.string.restore)) {
-                viewModel.addContact(contact, position)
-            }.show()
-        }
+//        if(viewModel.deleteContact(contact)) {
+//            Snackbar.make(
+//                binding.recyclerViewContacts,
+//                getString(R.string.s_has_been_removed).format(contact.name),
+//                Snackbar.LENGTH_LONG
+//            ).setAction(getString(R.string.restore)) {
+//                viewModel.addContact(contact, position)
+//            }.show()
+//        }
     }
 
     private fun getPosition(currentContact: Contact): Int {

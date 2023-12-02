@@ -6,7 +6,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
-import com.example.task_3.databinding.FragmentProfileBinding
+import com.example.task_5.databinding.FragmentProfileBinding
 import com.example.task_5.data.model.UserData
 import com.example.task_5.domain.state.UserApiResultState
 import com.example.task_5.presentation.ui.fragments.BaseFragment

@@ -1,4 +1,4 @@
-package com.example.task_5.presentation.ui.fragments.contacts
+package com.example.task_5.presentation.ui.fragments.contacts.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,17 +7,20 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.task_5.R
-import com.example.task_5.utils.ext.loadImage
-import com.example.task_5.databinding.ItemUserBinding
 import com.example.task_5.data.model.Contact
+import com.example.task_5.databinding.FragmentDialogCalendarBinding
+import com.example.task_5.databinding.ItemUserBinding
 import com.example.task_5.presentation.ui.fragments.contacts.adapter.interfaces.ContactItemClickListener
 import com.example.task_5.presentation.ui.fragments.contacts.adapter.utils.ContactDiffUtil
 import com.example.task_5.utils.Constants
+import com.example.task_5.utils.ext.invisible
+import com.example.task_5.utils.ext.loadImage
+import com.example.task_5.utils.ext.visible
 
+class RecyclerViewAdapter(private val listener: ContactItemClickListener) :
+    ListAdapter<Contact, RecyclerViewAdapter.ContactsViewHolder>(ContactDiffUtil()) {
 
-class ContactsListAdapter( private val listener: ContactItemClickListener) :
-    ListAdapter<Contact, ContactsListAdapter.ContactsViewHolder>(ContactDiffUtil()) {
-
+    private var isSelectItems: ArrayList<Pair<Boolean, Int>> = ArrayList()
     var isMultiselectMode = false
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactsViewHolder {
@@ -32,7 +35,6 @@ class ContactsListAdapter( private val listener: ContactItemClickListener) :
 
     inner class ContactsViewHolder(private val binding: ItemUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
         fun bind(contact: Contact) {
             with(binding) {
                 textViewName.text = contact.name
@@ -42,10 +44,24 @@ class ContactsListAdapter( private val listener: ContactItemClickListener) :
             setListeners(contact)
         }
 
-        private fun setListeners(contact: Contact) {
+        fun setListeners(contact: Contact) {
             if (isMultiselectMode) setSelectList(contact) else deleteItem(contact)
             itemLongClick(contact)
             itemClick(contact)
+        }
+
+        private fun setSelectList(contact: Contact) {
+            with(binding) {
+                checkboxSelectMode.visible()
+                imageViewDelete.invisible()
+                checkboxSelectMode.isChecked = isSelectItems.find {
+                    it.second == contact.id.toInt()
+                }?.first == true
+                viewBorder.background = ContextCompat.getDrawable(
+                    root.context,
+                    R.drawable.bc_user_select_mode
+                )
+            }
         }
 
         private fun deleteItem(contact: Contact) {
@@ -53,35 +69,29 @@ class ContactsListAdapter( private val listener: ContactItemClickListener) :
                 listener.onClickDelete(contact)
             }
         }
+
         private fun itemClick(contact: Contact) {
             with(binding) {
                 root.setOnClickListener {
-//                    if(isMultiselectMode) checkboxSelectMode.isChecked =
-//                        !contact.isChecked
+                    if (isMultiselectMode) checkboxSelectMode.isChecked =
+                        !checkboxSelectMode.isChecked
                     listener.onClickContact(
                         contact, arrayOf(
-                        setTransitionName(
-                            imageViewUserPhoto,
-                            Constants.TRANSITION_NAME_IMAGE + contact.id),
+                            setTransitionName(
+                                imageViewUserPhoto,
+                                Constants.TRANSITION_NAME_IMAGE + contact.id
+                            ),
                             setTransitionName(
                                 textViewName,
-                            Constants.TRANSITION_NAME_NAME + contact.id),
+                                Constants.TRANSITION_NAME_NAME + contact.id
+                            ),
                             setTransitionName(
                                 textViewCareer,
-                            Constants.TRANSITION_NAME_CAREER + contact.id)
-                    )
+                                Constants.TRANSITION_NAME_CAREER + contact.id
+                            )
+                        )
                     )
                 }
-            }
-        }
-
-        private fun setSelectList(contact: Contact) {
-            with(binding) {
-                checkboxSelectMode.visibility = View.VISIBLE
-                imageViewDelete.visibility = View.GONE
-//                checkboxSelectMode.isChecked = contact.isChecked
-                viewBorder.background =
-                    ContextCompat.getDrawable(root.context, R.drawable.bc_user_select_mode)
             }
         }
 
@@ -98,4 +108,7 @@ class ContactsListAdapter( private val listener: ContactItemClickListener) :
         }
     }
 
+    fun multiselectData(isMultiselectItem : ArrayList<Pair<Boolean, Int>>) {
+        this.isSelectItems = isMultiselectItem
+    }
 }
