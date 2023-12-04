@@ -4,7 +4,7 @@ import com.example.task_5.R
 import com.example.task_5.data.UserDataHolder
 import com.example.task_5.data.model.Contact
 import com.example.task_5.data.model.UserData
-import com.example.task_5.domain.network.ContactsApiService
+import com.example.task_5.data.api.ContactsApiService
 import com.example.task_5.domain.repository.ContactsRepository
 import com.example.task_5.domain.state.ArrayDataApiResultState
 import com.example.task_5.utils.Constants.AUTHORIZATION_PREFIX

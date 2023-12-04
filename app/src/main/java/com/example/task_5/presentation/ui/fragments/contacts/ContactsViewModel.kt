@@ -21,7 +21,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ContactsViewModel @Inject constructor(private val contactsRepositoryImpl: ContactsRepository)
+class ContactsViewModel @Inject constructor(private val contactsRepositoryImpl: ContactsRepositoryImpl)
     : ViewModel() {
 
     private val _usersStateFlow = MutableStateFlow<ArrayDataApiResultState>(ArrayDataApiResultState.Initial)

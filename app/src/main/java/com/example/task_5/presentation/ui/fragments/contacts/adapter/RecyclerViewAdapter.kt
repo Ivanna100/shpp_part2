@@ -108,7 +108,7 @@ class RecyclerViewAdapter(private val listener: ContactItemClickListener) :
         }
     }
 
-    fun multiselectData(isMultiselectItem : ArrayList<Pair<Boolean, Int>>) {
+    fun setMultiselectData(isMultiselectItem : ArrayList<Pair<Boolean, Int>>) {
         this.isSelectItems = isMultiselectItem
     }
 }

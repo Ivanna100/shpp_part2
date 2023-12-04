@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class UserProfileViewModel @Inject constructor(private val accountReposImpl : AccountRepository)
+class UserProfileViewModel @Inject constructor(private val accountReposImpl : AccountRepositoryImpl)
     : ViewModel() {
 
     private val _getUserStateFlow = MutableStateFlow<UserApiResultState> (UserApiResultState.Initial)

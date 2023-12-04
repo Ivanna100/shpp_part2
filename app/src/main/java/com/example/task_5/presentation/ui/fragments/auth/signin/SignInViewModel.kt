@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.task_5.data.model.UserRequest
 import com.example.task_5.data.repository.AccountRepositoryImpl
+import com.example.task_5.domain.repository.AccountRepository
 import com.example.task_5.domain.state.UserApiResultState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SignInViewModel @Inject constructor(
-//    private val accountRepositoryImpl : AccountRepositoryImpl
+    private val accountRepositoryImpl : AccountRepository
 ) : ViewModel() {
 
     private val _authorizationStateFlow = MutableStateFlow<UserApiResultState>(UserApiResultState.Initial)
@@ -22,6 +23,6 @@ class SignInViewModel @Inject constructor(
 
     fun authorizationUser(body : UserRequest) = viewModelScope.launch(Dispatchers.IO) {
         _authorizationStateFlow.value = UserApiResultState.Loading
-        //_authorizationStateFlow.value = accountRepositoryImpl.authorizeUser(body)
+        _authorizationStateFlow.value = accountRepositoryImpl.authorizeUser(body)
     }
 }

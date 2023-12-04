@@ -28,6 +28,7 @@
     <dimen name="mockup_size">100dp</dimen>
     <dimen name="add_photo_size">50dp</dimen>
     <dimen name="input_dialog_height">40dp</dimen>
+    <dimen name="progressbar">35dp</dimen>
 
 
     <!--  text sizes  -->

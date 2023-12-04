@@ -1,4 +1,4 @@
-package com.example.task_5.domain.network
+package com.example.task_5.data.api
 
 import com.example.task_5.data.model.ResponseOfContacts
 import com.example.task_5.data.model.ResponceOfUsers

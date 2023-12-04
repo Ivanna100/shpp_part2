@@ -68,6 +68,11 @@
         <item name="cornerSize">50%</item>
     </style>
 
+    <style name="searchViewTheme">
+        <item name="android:editTextColor">@color/white</item>
+        <item name="colorAccent">@color/white</item>
+    </style>
+
     <!--  Buttons  -->
     <style name="button_style" parent="Widget.AppCompat.Button">
         <item name="strokeWidth">3dp</item>

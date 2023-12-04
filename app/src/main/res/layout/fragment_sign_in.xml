@@ -56,12 +56,13 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/text_input_edit_text_email_sign_in"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/edit_text_height"
             android:inputType="textEmailAddress"
             android:maxLength="30"
+            android:textCursorDrawable="@null"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_big_size" />
+            android:textSize="@dimen/edit_text_size" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

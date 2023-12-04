@@ -1,7 +1,7 @@
-package com.example.task_5.domain.di
+package com.example.task_5.di
 
-import com.example.task_5.domain.network.AccountApiService
-import com.example.task_5.domain.network.ContactsApiService
+import com.example.task_5.data.api.AccountApiService
+import com.example.task_5.data.api.ContactsApiService
 import com.example.task_5.utils.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides

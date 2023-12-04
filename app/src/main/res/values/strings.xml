@@ -54,6 +54,8 @@
     <!-- fragment contacts -->
     <string name="contacts_removed">Contacts has been removed</string>
     <string name="contact_removed">Contact has been removed</string>
+    <string name="no_results_found">No results found</string>
+    <string name="you_can_see_more_contacts_in_the_recommendation">You can see more contacts in the recommendation</string>
     <!-- fragment dialog -->
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
@@ -62,18 +64,18 @@
     <string name="date_of_birth">Date of birth</string>
     <string name="log_out">Log out</string>
     <!-- fragment sign in -->
-    <string name="hello">Hello!</string>
-    <string name="enter_your_email_and_password_bellow">Enter your email and password bellow</string>
-    <string name="forgot_your_password">Forgot your password?</string>
-    <string name="login">LOGIN</string>
-    <string name="don_t_have_account">Don\'t have account?</string>
-    <string name="sign_up">Sign up</string>
-    <string name="your_profile_data">Your profile data</string>
-    <string name="fill_out_the_profile">Fill out the profile and go to the application!</string>
-    <string name="user_name">User name</string>
-    <string name="mobile_phone">Mobile phone</string>
-    <string name="forward">FORWARD</string>
-    <string name="operation_error">Operation error!</string>
+    <string name="hello" translatable="false">Hello!</string>
+    <string name="enter_your_email_and_password_bellow" translatable="false">Enter your email and password bellow</string>
+    <string name="forgot_your_password" translatable="false">Forgot your password?</string>
+    <string name="login" translatable="false">LOGIN</string>
+    <string name="don_t_have_account" translatable="false">Don\'t have account?</string>
+    <string name="sign_up" translatable="false">Sign up</string>
+    <string name="your_profile_data" translatable="false">Your profile data</string>
+    <string name="fill_out_the_profile" translatable="false">Fill out the profile and go to the application!</string>
+    <string name="user_name" translatable="false">User name</string>
+    <string name="mobile_phone" translatable="false">Mobile phone</string>
+    <string name="forward" translatable="false">FORWARD</string>
+    <string name="operation_error" translatable="false">Operation error!</string>
     <!-- errors -->
     <string name="not_correct_input">Invalid email or password</string>
     <string name="automatic_login_error">Automatic login error</string>
@@ -85,6 +87,9 @@
     <string name="contact_not_found">Contact not found</string>
     <string name="invalid_email">Invalid email</string>
     <string name="invalid_password">Invalid password</string>
+    <!-- fragment users -->
+    <string name="add">Add</string>
+    <string name="users">Users</string>
     <string name="phone_must_be_at_least_10_digits_long">Phone must be at least 10 digits long</string>
     <string name="user_name_must_contain_at_least_3_letters">User name must contain at least 3 letters</string>
 </resources>

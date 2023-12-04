@@ -54,6 +54,9 @@
         <action
             android:id="@+id/action_viewPagerFragment_to_editProfileFragment"
             app:destination="@id/editProfile" />
+        <action
+            android:id="@+id/action_viewPagerFragment_to_addContactsFragment"
+            app:destination="@id/addContactsFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpExtendedFragment"
@@ -78,6 +81,12 @@
         android:name="com.example.task_5.presentation.ui.fragments.ContactProfile"
         android:label="ContactProfile"
         tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="isNewUser"
+            app:argType="boolean" />
+        <argument
+            android:name="userData"
+            app:argType="com.example.task_5.data.model.UserWithTokens" />
         <argument
             android:name="Contact"
             app:argType="com.example.task_5.data.model.Contact" />
@@ -106,8 +115,20 @@
         android:label="ContactsFragment"
         tools:layout="@layout/fragment_contacts">
         <argument
-            android:name="email"
-            app:argType="string" />
+            android:name="userData"
+            app:argType="com.example.task_5.data.model.UserWithTokens" />
+    </fragment>
+    <fragment
+        android:id="@+id/addContactsFragment"
+        android:name="com.example.task_5.presentation.ui.fragments.addcontacts.AddContactsFragment"
+        android:label="AddContactsFragment"
+        tools:layout="@layout/fragment_users" >
+        <argument
+            android:name="userData"
+            app:argType="com.example.task_5.data.model.UserWithTokens" />
+        <action
+            android:id="@+id/action_addContactsFragment_to_contactProfile"
+            app:destination="@id/contactProfile" />
     </fragment>
 
 </navigation>

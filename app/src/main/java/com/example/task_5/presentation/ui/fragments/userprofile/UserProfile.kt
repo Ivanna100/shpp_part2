@@ -8,6 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.example.task_5.databinding.FragmentProfileBinding
 import com.example.task_5.data.model.UserData
+import com.example.task_5.data.model.UserWithTokens
 import com.example.task_5.domain.state.UserApiResultState
 import com.example.task_5.presentation.ui.fragments.BaseFragment
 import com.example.task_5.presentation.ui.fragments.viewpager.ViewPagerFragment
@@ -65,7 +66,14 @@ class UserProfile : BaseFragment<FragmentProfileBinding>(FragmentProfileBinding:
 
     private fun editProfile() {
         binding.buttonEditProfile.setOnClickListener {
-//            val direction = ViewPagerFragmentDirections.act
+            val direction = ViewPagerFragmentDirections.actionViewPagerFragmentToEditProfileFragment(
+                UserWithTokens(
+                    user,
+                    args.userProfile.accessToken,
+                    args.userProfile.refreshToken
+                )
+            )
+            navController.navigate(direction)
         }
     }
 

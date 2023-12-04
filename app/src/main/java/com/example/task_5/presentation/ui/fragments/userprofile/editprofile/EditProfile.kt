@@ -12,6 +12,8 @@ import androidx.navigation.fragment.navArgs
 import com.example.task_5.databinding.FragmentEditProfileBinding
 import com.example.task_5.domain.state.UserApiResultState
 import com.example.task_5.presentation.ui.fragments.BaseFragment
+import com.example.task_5.presentation.ui.fragments.userprofile.editprofile.dialog.DialogCalendar
+import com.example.task_5.presentation.ui.fragments.userprofile.editprofile.interfaces.DialogCalendarListener
 import com.example.task_5.utils.Constants
 import com.example.task_5.utils.Parser
 import com.example.task_5.utils.Validation
@@ -124,7 +126,15 @@ class EditProfile : BaseFragment<FragmentEditProfileBinding> (FragmentEditProfil
 
     private fun setCalendar() {
         with(binding) {
-            textInputEditTextDate.setOnClickListener {  }
+            textInputEditTextDate.setOnClickListener {
+                val dialog = DialogCalendar()
+                dialog.setListener(listener = object : DialogCalendarListener {
+                    override fun onDateSelected(date: String) {
+                        textInputEditTextDate.setText(date)
+                    }
+                })
+                dialog.show(parentFragmentManager, Constants.DIALOG_TAG)
+            }
         }
     }
 
