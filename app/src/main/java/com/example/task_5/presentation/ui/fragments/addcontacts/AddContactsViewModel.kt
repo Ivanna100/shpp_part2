@@ -1,4 +1,4 @@
-package com.example.task_5.presentation.ui.fragments.addcontacts.adapter
+package com.example.task_5.presentation.ui.fragments.addcontacts
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
