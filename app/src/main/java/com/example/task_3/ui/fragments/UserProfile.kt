@@ -8,6 +8,7 @@ import com.example.task_3.databinding.FragmentUserProfileBinding
 import com.example.task_3.ui.fragments.viewpager.ViewPagerFragment
 import com.example.task_3.utils.Constants
 import com.example.task_3.utils.DataStoreManager
+import com.example.task_3.utils.Fragments
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -39,7 +40,7 @@ class UserProfile : BaseFragment<FragmentUserProfileBinding> (FragmentUserProfil
 
     private fun viewContacts() {
         binding.btnViewContacts.setOnClickListener{
-            (parentFragment as? ViewPagerFragment)?.openFragment(1)
+            (parentFragment as? ViewPagerFragment)?.openFragment(Fragments.CONTACTS.ordinal)
         }
     }
 

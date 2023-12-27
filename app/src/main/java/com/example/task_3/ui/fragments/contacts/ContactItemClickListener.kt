@@ -1,7 +1,7 @@
 package com.example.task_3.ui.fragments.contacts
 
 import android.view.View
-import com.example.task_3.domain.model.Contact
+import com.example.task_3.data.model.Contact
 
 interface ContactItemClickListener {
     fun onClickDelete(contact: Contact)

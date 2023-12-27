@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.task_3.R
 import com.example.task_3.utils.ext.loadImage
 import com.example.task_3.databinding.ItemUserBinding
-import com.example.task_3.domain.model.Contact
+import com.example.task_3.data.model.Contact
 import com.example.task_3.ui.fragments.contacts.utils.ContactDiffUtil
 import com.example.task_3.utils.Constants
 import com.example.task_3.utils.ext.log

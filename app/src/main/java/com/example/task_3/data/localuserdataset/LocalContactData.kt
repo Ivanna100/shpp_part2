@@ -1,6 +1,6 @@
-package com.example.task_3.domain.localuserdataset
+package com.example.task_3.data.localuserdataset
 
-import com.example.task_3.domain.model.Contact
+import com.example.task_3.data.model.Contact
 import com.github.javafaker.Faker
 
 class LocalContactData {

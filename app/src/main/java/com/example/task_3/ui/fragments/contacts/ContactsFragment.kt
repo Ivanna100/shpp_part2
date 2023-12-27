@@ -4,25 +4,25 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.task_3.R
 import com.example.task_3.databinding.FragmentContactsBinding
-import com.example.task_3.domain.model.Contact
+import com.example.task_3.data.model.Contact
 import com.example.task_3.ui.fragments.BaseFragment
+import com.example.task_3.ui.fragments.DialogInterface
 import com.example.task_3.ui.fragments.DialogFragment
 import com.example.task_3.ui.fragments.viewpager.ViewPagerFragment
 import com.example.task_3.ui.fragments.viewpager.ViewPagerFragmentDirections
 import com.example.task_3.utils.Constants
 import com.example.task_3.utils.Fragments
-import com.example.task_3.utils.ext.log
 import com.example.task_3.utils.ext.showErrorSnackBar
+import com.example.task_3.utils.setTouchCallBackListener
 import com.google.android.material.snackbar.Snackbar
 
-class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsBinding:: inflate) {
+class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsBinding:: inflate),
+    DialogInterface {
 
     private val viewModel: ContactsViewModel by viewModels()
 
@@ -38,13 +38,7 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsB
                 transitionPairs: Array<Pair<View, String>>
             ) {
                 if(adapter.isMultiselectMode) {
-                    contact.isChecked = !contact.isChecked
-                    if(contact.isChecked && viewModel.selectContacts.value?.contains(contact) == false)
-                        viewModel.addSelectContact(contact)
-                    if(!contact.isChecked && viewModel.selectContacts.value?.contains(contact) == true)
-                        viewModel.deleteSelectContact(contact)
-                    if(viewModel.selectContacts.value?.size == 0 )
-                        viewModel.changeMultiselectMode()
+                    viewModel.makeMultiselectOperations(contact)
                 } else {
                     val extras = FragmentNavigatorExtras(*transitionPairs)
                      val direction =
@@ -99,7 +93,11 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsB
         val layoutManager = LinearLayoutManager(context)
         binding.recyclerViewContacts.layoutManager = layoutManager
         binding.recyclerViewContacts.adapter = adapter
-        ItemTouchHelper(setTouchCallBackListener()).attachToRecyclerView(binding.recyclerViewContacts)
+        ItemTouchHelper(setTouchCallBackListener(onSwiped = {
+            deleteUserWithRestore(viewModel.contactList.value?.getOrNull(it)!!)
+        }, isSwipeEnabled = {
+            viewModel.isMultiselect.value == false
+        })).attachToRecyclerView(binding.recyclerViewContacts)
     }
 
     private fun setClickListener() {
@@ -111,7 +109,7 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsB
     private fun showAddContactsDialog() {
         binding.textViewAddContacts.setOnClickListener {
             val dialogFragment = DialogFragment()
-            dialogFragment.setViewModel(viewModel)
+            dialogFragment.setDialogListener(listener = this)
             dialogFragment.show(parentFragmentManager, Constants.DIALOG_TAG)
         }
     }
@@ -144,35 +142,6 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsB
         }
     }
 
-    private fun setTouchCallBackListener(): ItemTouchHelper.Callback {
-        return object : ItemTouchHelper.SimpleCallback(0, 0) {
-            override fun onMove(
-                recyclerView: RecyclerView,
-                viewHolder: RecyclerView.ViewHolder,
-                target: RecyclerView.ViewHolder
-            ): Boolean {
-                return false
-            }
-
-            override fun getSwipeDirs(
-                recyclerView: RecyclerView,
-                viewHolder: RecyclerView.ViewHolder
-            ): Int {
-                return ItemTouchHelper.LEFT
-            }
-
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                deleteUserWithRestore(
-                    viewModel.contactList.value?.getOrNull(viewHolder.bindingAdapterPosition)!!
-                )
-            }
-
-            override fun isItemViewSwipeEnabled(): Boolean {
-                return viewModel.isMultiselect.value == false
-            }
-        }
-    }
-
     fun deleteUserWithRestore(contact: Contact) {
         val position = getPosition(contact)
         if(viewModel.deleteContact(contact)) {
@@ -189,5 +158,9 @@ class ContactsFragment : BaseFragment<FragmentContactsBinding>(FragmentContactsB
     private fun getPosition(currentContact: Contact): Int {
         val contactList = viewModel.contactList.value ?: emptyList()
         return contactList.indexOfFirst { it == currentContact }
+    }
+
+    override fun onSendContact(contact: Contact) {
+        viewModel.addContact(contact)
     }
 }

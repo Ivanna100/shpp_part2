@@ -9,9 +9,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDialogFragment
 import com.example.task_3.R
+import com.example.task_3.data.model.Contact
 import com.example.task_3.databinding.FragmentAddContactBinding
-import com.example.task_3.domain.model.Contact
-import com.example.task_3.ui.fragments.contacts.ContactsViewModel
 import com.example.task_3.utils.ext.loadImage
 
 class DialogFragment: AppCompatDialogFragment() {
@@ -20,7 +19,7 @@ class DialogFragment: AppCompatDialogFragment() {
 
     private var photoUri: Uri? = null
 
-    private var viewModel = ContactsViewModel()
+    private lateinit var listener: DialogInterface
 
     private val requestImageLauncher =
         registerForActivityResult(ActivityResultContracts.PickVisualMedia()) {
@@ -30,10 +29,6 @@ class DialogFragment: AppCompatDialogFragment() {
                 binding.imageViewNewContactMockup.visibility = View.GONE
             }
         }
-
-    fun setViewModel(userViewModel: ContactsViewModel) {
-        this.viewModel = userViewModel
-    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(requireActivity())
@@ -64,9 +59,13 @@ class DialogFragment: AppCompatDialogFragment() {
         }
     }
 
+    fun setDialogListener( listener : DialogInterface) {
+        this.listener = listener
+    }
+
     private fun saveNewContact() {
         binding.buttonSave.setOnClickListener{
-            viewModel.addContact(
+            listener.onSendContact(
                 Contact(
                     name = binding.textInputEditTextUserName.text.toString(),
                     career = binding.textInputEditTextCareer.text.toString(),

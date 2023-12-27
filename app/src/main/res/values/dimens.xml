@@ -27,7 +27,7 @@
     <dimen name="photo_size_dialog">120dp</dimen>
     <dimen name="mockup_size">100dp</dimen>
     <dimen name="add_photo_size">50dp</dimen>
-    <dimen name="input_dialog_height">40dp</dimen>
+    <dimen name="input_dialog_height">55dp</dimen>
 
 
     <!--  text sizes  -->

@@ -14,6 +14,7 @@ object Constants {
 
     // screens in viewpager
     const val FRAGMENT_COUNT = 2
+    const val FIRST_FRAGMENT = 0
 
     // validation
     const val PASSWORD_REGEX =

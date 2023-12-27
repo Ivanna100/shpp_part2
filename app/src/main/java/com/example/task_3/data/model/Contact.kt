@@ -1,4 +1,4 @@
-package com.example.task_3.domain.model
+package com.example.task_3.data.model
 
 import kotlinx.parcelize.Parcelize
 import android.os.Parcelable
